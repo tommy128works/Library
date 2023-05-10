@@ -1,3 +1,5 @@
+let myLibrary = [];
+
 function Book(title, author, pages, read) {
   this.title = title;
   this.author = author;
@@ -10,6 +12,10 @@ function Book(title, author, pages, read) {
       return title + " by " + author + ", " + pages + " pages, not read yet";
     }
   };
+}
+
+function addBookToLibrary(library, book) {
+  library.push(book);
 }
 
 const book1 = new Book("Spongebob Squarepants", "ME MARIO", "120", false);
