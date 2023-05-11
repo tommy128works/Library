@@ -44,6 +44,16 @@ function displayLibrary(library) {
   }
 }
 
+function openForm() {
+  document.getElementById("myForm").style.display = "block";
+  var allInputs = document.querySelectorAll("input");
+  allInputs.forEach((singleInput) => (singleInput.value = ""));
+}
+
+function closeForm() {
+  document.getElementById("myForm").style.display = "none";
+}
+
 const book1 = new Book("Spongebob Squarepants", "ME MARIO", "120", false);
 const book2 = new Book("Spongebob Squarepants2", "ME MARIO", "120", false);
 const book3 = new Book("Spongebob Squarepants3", "ME MARIO", "120", false);
