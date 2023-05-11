@@ -18,6 +18,14 @@ function addBookToLibrary(library, book) {
   library.push(book);
 }
 
+function updateRead(book, btn) {
+  if (book.isRead === true) {
+    btn.textContent = "Read";
+  } else {
+    btn.textContent = "Not read";
+  }
+}
+
 function displayLibrary(library) {
   var table = document.getElementById("myLibrary");
   var numRows = document.getElementById("myLibrary").rows.length;
@@ -39,19 +47,28 @@ function displayLibrary(library) {
     cell2.textContent = library[i].title;
     cell3.textContent = library[i].author;
     cell4.textContent = library[i].pages;
-    cell5.textContent = library[i].isRead;
+    cell5.outerHTML = `<td><button data-num="${i}" class="status-btn"></button></td>`;
     cell6.outerHTML = `<td><button data-num="${i}" class="remove-btn">Remove</button></td>`;
   }
 
   var btns = document.querySelectorAll(".remove-btn");
   btns.forEach((btn) => {
     btn.addEventListener("click", (event) => {
-      myLibrary.splice(event.target.getAttribute("data-num"), 1);
-      displayLibrary(myLibrary);
+      library.splice(event.target.getAttribute("data-num"), 1);
+      displayLibrary(library);
     });
   });
 
-  // Add event for all read buttons
+  var btns = document.querySelectorAll(".status-btn");
+  btns.forEach((btn) => {
+    updateRead(library[btn.getAttribute("data-num")], btn);
+    btn.addEventListener("click", (event) => {
+      var index = event.target.getAttribute("data-num");
+      library[index].isRead = !library[index].isRead;
+      updateRead(library[index], btn);
+      displayLibrary(myLibrary);
+    });
+  });
 }
 
 function openForm() {
@@ -79,7 +96,7 @@ function closeForm() {
 
 const book1 = new Book("Spongebob Squarepants", "ME MARIO", "120", false);
 const book2 = new Book("Spongebob Squarepants2", "ME MARIO", "120", false);
-const book3 = new Book("Spongebob Squarepants3", "ME MARIO", "120", false);
+const book3 = new Book("Spongebob Squarepants3", "ME MARIO", "120", true);
 
 addBookToLibrary(myLibrary, book1);
 addBookToLibrary(myLibrary, book2);
