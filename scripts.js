@@ -1,12 +1,12 @@
 let myLibrary = [];
 
-function Book(title, author, pages, read) {
+function Book(title, author, pages, isRead) {
   this.title = title;
   this.author = author;
   this.pages = pages;
-  this.read = read;
+  this.isRead = isRead;
   this.info = function () {
-    if (read === true) {
+    if (isRead === true) {
       return title + " by " + author + ", " + pages + " pages, read already";
     } else {
       return title + " by " + author + ", " + pages + " pages, not read yet";
@@ -39,8 +39,8 @@ function displayLibrary(library) {
     cell2.textContent = library[i].title;
     cell3.textContent = library[i].author;
     cell4.textContent = library[i].pages;
-    cell5.textContent = library[i].read;
-    cell6.textContent = library[i].read;
+    cell5.textContent = library[i].isRead;
+    cell6.textContent = library[i].isRead;
   }
 }
 
@@ -48,6 +48,19 @@ function openForm() {
   document.getElementById("myForm").style.display = "block";
   var allInputs = document.querySelectorAll("input");
   allInputs.forEach((singleInput) => (singleInput.value = ""));
+}
+
+function submitForm() {
+  var title = document.getElementById("title");
+  var author = document.getElementById("author");
+  var pages = document.getElementById("pages");
+  var isRead = document.getElementById("isRead");
+
+  var book = new Book(title.value, author.value, pages.value, isRead.checked);
+  addBookToLibrary(myLibrary, book);
+
+  closeForm();
+  displayLibrary(myLibrary);
 }
 
 function closeForm() {

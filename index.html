@@ -19,22 +19,22 @@
     </button>
 
     <div class="form-popup" id="myForm">
-      <form class="form-container">
+      <form class="form-container" onsubmit="event.preventDefault()">
         <h1>Add new book</h1>
 
-        <label for="book">Book</label>
-        <input type="text" name="book" required />
+        <label for="title">Title</label>
+        <input type="text" name="title" id="title" required />
 
         <label for="author">Author</label>
-        <input type="text" name="author" required />
+        <input type="text" name="author" id="author" required />
 
         <label for="pages">Pages</label>
-        <input type="number" name="pages" required />
+        <input type="number" name="pages" id="pages" required />
 
         <label for="isRead">Have you read it?</label>
-        <input type="checkbox" name="isRead" />
+        <input type="checkbox" name="isRead" id="isRead" />
 
-        <button type="submit" class="btn">Submit</button>
+        <button type="submit" class="btn" onclick="submitForm()">Submit</button>
         <button type="button" class="btn cancel" onclick="closeForm()">
           Close
         </button>
