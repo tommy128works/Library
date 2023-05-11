@@ -40,14 +40,14 @@ function displayLibrary(library) {
     cell3.textContent = library[i].author;
     cell4.textContent = library[i].pages;
     cell5.textContent = library[i].isRead;
-    cell6.outerHTML = `<td><button data-num="${
-      i + 1}" class="remove-btn">Remove</button></td>`;
+    cell6.outerHTML = `<td><button data-num="${i}" class="remove-btn">Remove</button></td>`;
   }
-  // Add event for all remove buttons
+
   var btns = document.querySelectorAll(".remove-btn");
   btns.forEach((btn) => {
     btn.addEventListener("click", (event) => {
-      console.log(event.target.getAttribute("data-num"));
+      myLibrary.splice(event.target.getAttribute("data-num"), 1);
+      displayLibrary(myLibrary);
     });
   });
 
